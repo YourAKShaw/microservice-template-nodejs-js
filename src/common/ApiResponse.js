@@ -1,8 +1,8 @@
 /**
  * Represents an API response.
- * @typedef {Object} apiResponse
+ * @typedef {Object} ApiResponse
  */
-class apiResponse {
+class ApiResponse {
   statusCode;
   success;
   message;
@@ -26,4 +26,4 @@ class apiResponse {
   }
 }
 
-export default apiResponse;
+export default ApiResponse;
