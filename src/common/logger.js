@@ -16,13 +16,13 @@ const customLevels = {
     info: 6,
   },
   colors: {
-    crit: 'magenta',
-    error: 'red',
-    warn: 'yellow',
-    debug: 'blue',
-    verbose: 'cyan',
-    success: 'green',
-    info: 'grey',
+    crit: 'italic bold magentaBG',
+    error: 'italic bold redBG',
+    warn: 'italic yellow',
+    debug: 'italic blue',
+    verbose: 'dim italic cyan',
+    success: 'italic green',
+    info: 'italic grey',
   },
 };
 
