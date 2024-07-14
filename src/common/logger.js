@@ -1,20 +1,20 @@
-import { emojify } from 'node-emoji';
+import * as emoji from 'node-emoji';
 import winston from 'winston';
-
 
 // Create a custom formatter with improved readability
 const myFormat = winston.format.printf((info) => {
   let emojiToLog = '';
   switch (info.level) {
-    case 'info':
-      emojiToLog = emojify.get('white_check_mark');
+    case '\x1B[32minfo\x1B[39m':
+      emojiToLog = emoji.get('white_check_mark');
       break;
-    case 'error':
-      emojiToLog = emojify.get('x');
+    case '\x1B[31merror\x1B[39m':
+      emojiToLog = emoji.get('x');
       break;
     default:
-      emojiToLog = ''; // Handle other log levels (optional)
+      emojiToLog = emoji.get('grey_exclamation'); // Handle other log levels (optional)
   }
+
   return (
     `[${info.timestamp}] ${emojiToLog} [${info.level}]: ${info.message}` +
     (info.splat !== undefined ? `${info.splat}` : ' ')
