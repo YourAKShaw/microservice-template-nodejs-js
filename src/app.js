@@ -1,11 +1,23 @@
 import express from 'express';
 import createHttpError from 'http-errors';
+import ApiResponse from './common/ApiResponse.js';
 
 const app = express();
 
 app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
+
+app.get('/', (req, res) => {
+  res.send(
+    new ApiResponse({
+      statusCode: 200,
+      success: true,
+      message: 'microservice-template-nodejs-js',
+      data: 'A backend template made using Node.js, Express.js, and JavaScript for building microservices.',
+    }),
+  );
+});
 
 // 404 handler
 app.use((req, res, next) => {
