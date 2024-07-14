@@ -8,6 +8,7 @@ app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
 
+//* GET / Introduction
 app.get('/', (req, res) => {
   res.send(
     new ApiResponse({
