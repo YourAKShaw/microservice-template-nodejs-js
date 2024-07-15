@@ -1,7 +1,7 @@
 {
   "name": "microservice-template-nodejs-js",
   "version": "1.0.0",
-  "description": "A backend template made using Node.js, Express.js, and JavaScript for building microservices.",
+  "description": "A backend template made using Node.js, Express.js, and JavaScript for building REST API based microservices.",
   "main": "main.js",
   "type": "module",
   "scripts": {
