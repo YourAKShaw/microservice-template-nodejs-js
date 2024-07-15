@@ -1,6 +1,7 @@
 import express from 'express';
 import createHttpError from 'http-errors';
 import ApiResponse from './common/ApiResponse.js';
+import sampleRoutes from './sample/sample.route.js';
 
 const app = express();
 
@@ -15,10 +16,12 @@ app.get('/', (req, res) => {
       statusCode: 200,
       success: true,
       message: 'microservice-template-nodejs-js',
-      data: 'A backend template made using Node.js, Express.js, and JavaScript for building microservices.',
+      data: 'A backend template made using Node.js, Express.js, and JavaScript for building REST API based microservices.',
     }),
   );
 });
+
+app.use('/api/samples', sampleRoutes);
 
 // 404 handler
 app.use((req, res, next) => {
