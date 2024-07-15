@@ -3,6 +3,7 @@ import ApiResponse from '../common/ApiResponse.js';
 import logger from '../common/logger.js';
 import * as SampleService from './sample.service.js';
 import createSampleSchema from './schema/create-sample.schema.js';
+import updateSampleSchema from './schema/update-sample.schema.js';
 
 // Controller functions to handle incoming requests and interact with the service
 
@@ -101,9 +102,14 @@ async function getSampleById(req, res) {
   }
 }
 
-async function updateSample(req, res) {
+async function updateSample(req, res, next) {
   const id = req.params.id;
   const updatedData = req.body;
+  const { error } = updateSampleSchema.validate(updatedData);
+  if (error) {
+    logger.error(error.message);
+    return next(createHttpError(400, error.message));
+  }
   try {
     const updateResult = await SampleService.updateSample(id, updatedData);
 
