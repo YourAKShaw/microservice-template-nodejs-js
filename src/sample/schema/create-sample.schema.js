@@ -1,9 +1,9 @@
-import Joi from "joi";
+import Joi from 'joi';
 
 const createSampleSchema = Joi.object({
   sampleBoolean: Joi.boolean(),
   sampleNumber: Joi.number(),
-  sampleString: Joi.string()
+  sampleString: Joi.string(),
 }).required();
 
 export default createSampleSchema;
