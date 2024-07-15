@@ -1,12 +1,19 @@
+import createHttpError from 'http-errors';
 import ApiResponse from '../common/ApiResponse.js';
 import logger from '../common/logger.js';
 import * as SampleService from './sample.service.js';
+import createSampleSchema from './schema/create-sample.schema.js';
 
 // Controller functions to handle incoming requests and interact with the service
 
-async function createSample(req, res) {
+async function createSample(req, res, next) {
   try {
     const sampleData = req.body; // Assuming data is sent in the request body
+    const { error } = createSampleSchema.validate(sampleData);
+    if (error) {
+      logger.error(error.message);
+      return next(createHttpError(400, error.message));
+    }
     const id = await SampleService.createSample(sampleData);
     res.status(201).json(
       new ApiResponse({
