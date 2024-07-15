@@ -1,19 +1,10 @@
-import { MongoClient, ObjectId } from 'mongodb';
-import logger from '../common/logger.js';
+import { ObjectId } from 'mongodb';
+import { getDb } from '../common/mongoClient.js';
 
-const client = new MongoClient(process.env.MONGODB_URI);
-
-const sampleCollection = client.db('test').collection('samples');
-
-async function connectToDb() {
-  try {
-    await client.connect();
-    logger.success('Connected to MongoDB!');
-  } catch (error) {
-    logger.error('Error connecting to MongoDB:', error);
-    process.exit(1); // Exit process on connection error
-  }
-}
+const sampleCollection = await (async () => {
+  const db = await getDb();
+  return db.collection('samples');
+})(); // Immediately Invoked Function Expression (IIFE) for collection creation
 
 // Function to create a new sample document
 async function createSample(sampleData) {
@@ -75,9 +66,6 @@ async function deleteSample(id) {
     throw error; // Re-throw the error for handling in the controller
   }
 }
-
-// Connect to MongoDB before exporting functions (assuming it's a single connection)
-connectToDb();
 
 export {
   createSample,
