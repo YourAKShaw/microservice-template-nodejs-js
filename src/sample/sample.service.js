@@ -43,11 +43,22 @@ async function updateSample(id, updatedData) {
   try {
     const sample = await getSampleById(id);
     const modifiedCount = await SampleModel.updateSample(id, updatedData);
-    if (modifiedCount === 0) {
-      return { sample, modifiedCount }; // Handle case where sample is not found or is identical to the request body
+    if (modifiedCount > 0) {
+      logger.success(
+        `Sample with id ${id} updated/replaced using PUT operation`,
+      );
     }
-    logger.success(`Sample with id ${id} updated/replaced using PUT operation`);
-    return { message: 'Sample updated successfully' }; // Return a success message (optional)
+    
+    // Handle case where sample is not found or is identical to the request body
+    if (modifiedCount === 0) {
+      logger.info(`ModifiedCount is 0 for sample document with id ${id}`);
+    }
+
+    if (!sample) {
+      logger.error(`sample with id ${id} not found`);
+    }
+
+    return { sample, modifiedCount };
   } catch (error) {
     logger.error('Error updating sample:', error);
     throw error; // Re-throw the error for handling in the controller
@@ -56,12 +67,14 @@ async function updateSample(id, updatedData) {
 
 async function deleteSample(id) {
   try {
+    const sample = await getSampleById(id);
     const deletedCount = await SampleModel.deleteSample(id);
-    if (deletedCount === 0) {
-      return null; // Handle case where sample is not found (optional)
+    if (deletedCount > 0) {
+      logger.info(`Sample with id ${id} deleted`);
+    } else {
+      logger.error(`Sample wigh id ${id} not found`);
     }
-    logger.info(`Sample with id ${id} deleted`);
-    return { message: 'Sample deleted successfully' }; // Return a success message (optional)
+    return { sample, deletedCount };
   } catch (error) {
     logger.error('Error deleting sample:', error);
     throw error; // Re-throw the error for handling in the controller
