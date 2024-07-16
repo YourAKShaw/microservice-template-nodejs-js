@@ -43,7 +43,7 @@
 
 ## Get to know me 😉
 
-⚪ Author: [Ayush Kumar Shaw](@YourAKShaw)
+⚪ Author: @YourAKShaw
 
 ⚪ Website: [yourakshaw.com](https://www.yourakshaw.com)
 
