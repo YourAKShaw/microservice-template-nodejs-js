@@ -86,7 +86,7 @@ let logger = null;
 if (process.env.NODE_ENV === 'production') {
   // Create a logger with custom levels, formats, and transports
   logger = winston.createLogger({
-    defaultMeta: { service: 'sample-service' },
+    defaultMeta: { service: 'template-service' },
     levels: customLevels.levels,
     transports: [consoleTransport, fileTransport], // Combine console and file transports
     format: winston.format.combine(winston.format.timestamp(), myFormat), // Default format for all transports
@@ -95,7 +95,7 @@ if (process.env.NODE_ENV === 'production') {
   //* If we're not in production then log to the `console` with the format:
   //* `${info.level}: ${info.message} JSON.stringify({ ...rest }) `
   logger = winston.createLogger({
-    defaultMeta: { service: 'sample-service' },
+    defaultMeta: { service: 'template-service' },
     levels: customLevels.levels,
     transports: [
       new winston.transports.Console(),
