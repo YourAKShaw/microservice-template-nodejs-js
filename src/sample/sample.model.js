@@ -1,9 +1,11 @@
 import { ObjectId } from 'mongodb';
 import { getDb } from '../common/mongoClient.js';
 
-const sampleCollection = await (async () => {
+let sampleCollection;
+
+(async () => {
   const db = await getDb();
-  return db.collection('samples');
+  sampleCollection = db.collection('samples');
 })(); // Immediately Invoked Function Expression (IIFE) for collection creation
 
 // Function to create a new sample document
