@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node src/main.js",
     "dev": "nodemon src/main.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "keywords": [
     "auth"
@@ -30,6 +30,7 @@
     "dotenv": "^16.4.5",
     "eslint": "^9.6.0",
     "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-jest": "^28.6.0",
     "globals": "^15.8.0",
     "jest": "^29.7.0",
     "nodemon": "^3.1.4",
