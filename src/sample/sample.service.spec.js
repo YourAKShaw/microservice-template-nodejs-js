@@ -187,7 +187,7 @@ describe('SampleService', () => {
       const result = await SampleService.deleteSample('123');
 
       expect(result).toEqual({ sample, deletedCount: 0 });
-      expect(logger.error).toHaveBeenCalledWith('Sample wigh id 123 not found');
+      expect(logger.error).toHaveBeenCalledWith('Sample with id 123 not found');
     });
 
     it('should log error and throw if deletion fails', async () => {
